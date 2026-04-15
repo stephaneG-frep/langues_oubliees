@@ -81,6 +81,15 @@
     "description": "Force de changement parfois brusque, mais féconde sur le long terme."
   },
   {
+    "id": "naudiz",
+    "symbol": "ᚾ",
+    "name": "Naudiz",
+    "latinEquivalent": "n",
+    "sound": "n",
+    "meaning": "Nécessité, tension",
+    "description": "Invite à la discipline, à l'endurance et à la résolution des obstacles."
+  },
+  {
     "id": "isa",
     "symbol": "ᛁ",
     "name": "Isa",
@@ -99,6 +108,24 @@
     "description": "Symbole du temps juste, de la patience et des fruits du travail."
   },
   {
+    "id": "eihwaz",
+    "symbol": "ᛇ",
+    "name": "Eihwaz",
+    "latinEquivalent": "ei",
+    "sound": "ei",
+    "meaning": "Axe, persévérance",
+    "description": "Rune de l'endurance et des transitions profondes."
+  },
+  {
+    "id": "perthro",
+    "symbol": "ᛈ",
+    "name": "Perthro",
+    "latinEquivalent": "p",
+    "sound": "p",
+    "meaning": "Destin, mystère",
+    "description": "Évoque l'inconnu, l'intuition et les secrets révélés avec le temps."
+  },
+  {
     "id": "algiz",
     "symbol": "ᛉ",
     "name": "Algiz",
@@ -106,5 +133,86 @@
     "sound": "z",
     "meaning": "Protection élevée",
     "description": "Rune de sauvegarde, d'intuition et de connexion au sacré."
+  },
+  {
+    "id": "sowilo",
+    "symbol": "ᛋ",
+    "name": "Sowilo",
+    "latinEquivalent": "s",
+    "sound": "s",
+    "meaning": "Soleil, succès",
+    "description": "Porte l'élan vital, la clarté et l'accomplissement."
+  },
+  {
+    "id": "tiwaz",
+    "symbol": "ᛏ",
+    "name": "Tiwaz",
+    "latinEquivalent": "t",
+    "sound": "t",
+    "meaning": "Justice, courage",
+    "description": "Rune de l'honneur, de la droiture et de la détermination."
+  },
+  {
+    "id": "berkano",
+    "symbol": "ᛒ",
+    "name": "Berkano",
+    "latinEquivalent": "b",
+    "sound": "b",
+    "meaning": "Croissance, renouveau",
+    "description": "Liée à la naissance, au soin et au développement harmonieux."
+  },
+  {
+    "id": "ehwaz",
+    "symbol": "ᛖ",
+    "name": "Ehwaz",
+    "latinEquivalent": "e",
+    "sound": "e",
+    "meaning": "Mouvement, confiance",
+    "description": "Symbolise la coopération, le progrès et l'alliance fiable."
+  },
+  {
+    "id": "mannaz",
+    "symbol": "ᛗ",
+    "name": "Mannaz",
+    "latinEquivalent": "m",
+    "sound": "m",
+    "meaning": "Humanité, esprit",
+    "description": "Rune de la conscience, de l'intelligence collective et du lien humain."
+  },
+  {
+    "id": "laguz",
+    "symbol": "ᛚ",
+    "name": "Laguz",
+    "latinEquivalent": "l",
+    "sound": "l",
+    "meaning": "Eau, intuition",
+    "description": "Évoque le flux, l'adaptation et la perception sensible."
+  },
+  {
+    "id": "ingwaz",
+    "symbol": "ᛜ",
+    "name": "Ingwaz",
+    "latinEquivalent": "ng",
+    "sound": "ng",
+    "meaning": "Graine, gestation",
+    "description": "Rune du potentiel latent et de la maturation intérieure."
+  },
+  {
+    "id": "dagaz",
+    "symbol": "ᛞ",
+    "name": "Dagaz",
+    "latinEquivalent": "d",
+    "sound": "d",
+    "meaning": "Aube, transformation",
+    "description": "Annonce un passage, un renversement lumineux et un nouveau cycle."
+  },
+  {
+    "id": "othala",
+    "symbol": "ᛟ",
+    "name": "Othala",
+    "latinEquivalent": "o",
+    "sound": "o",
+    "meaning": "Héritage, foyer",
+    "description": "Rune de la transmission, des racines et du territoire intérieur."
   }
 ]

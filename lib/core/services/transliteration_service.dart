@@ -54,7 +54,10 @@ class TransliterationService {
         }
       }
 
-      if (map.containsKey(currentChar)) {
+      final rewrittenChar = _rewriteSingleChar(currentChar);
+      if (rewrittenChar != null && map.containsKey(rewrittenChar)) {
+        buffer.write(map[rewrittenChar]);
+      } else if (map.containsKey(currentChar)) {
         buffer.write(map[currentChar]);
       } else {
         buffer.write('·');
@@ -98,6 +101,7 @@ class TransliterationService {
       'ü': 'u',
       'ý': 'y',
       'ÿ': 'y',
+      'x': 'ks',
     };
 
     replacements.forEach((from, to) {
@@ -114,6 +118,20 @@ class TransliterationService {
         return 'k';
       case 'ou':
         return 'u';
+      default:
+        return null;
+    }
+  }
+
+  String? _rewriteSingleChar(String value) {
+    switch (value) {
+      case 'c':
+      case 'q':
+        return 'k';
+      case 'v':
+        return 'w';
+      case 'y':
+        return 'j';
       default:
         return null;
     }
