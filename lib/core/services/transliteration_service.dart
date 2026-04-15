@@ -1,3 +1,5 @@
+import 'package:characters/characters.dart';
+
 import '../../models/rune_model.dart';
 
 class TransliterationService {
@@ -63,6 +65,26 @@ class TransliterationService {
         buffer.write('·');
       }
       index++;
+    }
+
+    return buffer.toString().replaceAll(RegExp(r'\s+'), ' ').trim();
+  }
+
+  String toSpeakableFromRunes(String runicText, List<RuneModel> runes) {
+    if (runicText.trim().isEmpty) return '';
+
+    final symbolToSound = {
+      for (final rune in runes) rune.symbol: rune.sound,
+    };
+
+    final buffer = StringBuffer();
+
+    for (final char in runicText.characters) {
+      if (symbolToSound.containsKey(char)) {
+        buffer.write('${symbolToSound[char]} ');
+      } else {
+        buffer.write(char);
+      }
     }
 
     return buffer.toString().replaceAll(RegExp(r'\s+'), ' ').trim();

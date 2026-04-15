@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
 import '../core/services/transliteration_service.dart';
+import '../core/services/tts_service.dart';
 import '../providers/favorites_provider.dart';
 import '../providers/history_provider.dart';
 import '../providers/runes_provider.dart';
@@ -18,10 +19,12 @@ class TranslateScreen extends StatefulWidget {
 class _TranslateScreenState extends State<TranslateScreen> {
   final _controller = TextEditingController();
   final _service = const TransliterationService();
+  final _ttsService = TtsService();
   String _result = '';
 
   @override
   void dispose() {
+    _ttsService.stop();
     _controller.dispose();
     super.dispose();
   }
@@ -33,6 +36,19 @@ class _TranslateScreenState extends State<TranslateScreen> {
     setState(() {
       _result = translated;
     });
+  }
+
+  Future<void> _speakInput() async {
+    if (_controller.text.trim().isEmpty) return;
+    await _ttsService.speak(_controller.text.trim());
+  }
+
+  Future<void> _speakRunes() async {
+    if (_result.isEmpty) return;
+
+    final runes = context.read<RunesProvider>().allRunes;
+    final speakable = _service.toSpeakableFromRunes(_result, runes);
+    await _ttsService.speak(speakable);
   }
 
   Future<void> _copyResult() async {
@@ -78,6 +94,7 @@ class _TranslateScreenState extends State<TranslateScreen> {
           children: [
             TextField(
               controller: _controller,
+              onChanged: (_) => setState(() {}),
               maxLines: 3,
               decoration: const InputDecoration(
                 labelText: 'Texte français',
@@ -85,10 +102,21 @@ class _TranslateScreenState extends State<TranslateScreen> {
               ),
             ),
             const SizedBox(height: 12),
-            FilledButton.icon(
-              onPressed: _translate,
-              icon: const Icon(Icons.auto_fix_high),
-              label: const Text('Traduire'),
+            Wrap(
+              spacing: 8,
+              runSpacing: 8,
+              children: [
+                FilledButton.icon(
+                  onPressed: _translate,
+                  icon: const Icon(Icons.auto_fix_high),
+                  label: const Text('Traduire'),
+                ),
+                OutlinedButton.icon(
+                  onPressed: _controller.text.trim().isEmpty ? null : _speakInput,
+                  icon: const Icon(Icons.volume_up_outlined),
+                  label: const Text('Écouter le texte'),
+                ),
+              ],
             ),
             const SizedBox(height: 14),
             Card(
@@ -112,6 +140,11 @@ class _TranslateScreenState extends State<TranslateScreen> {
                       runSpacing: 8,
                       children: [
                         OutlinedButton.icon(
+                          onPressed: _result.isEmpty ? null : _speakRunes,
+                          icon: const Icon(Icons.graphic_eq),
+                          label: const Text('Écouter les runes'),
+                        ),
+                        OutlinedButton.icon(
                           onPressed: _result.isEmpty ? null : _copyResult,
                           icon: const Icon(Icons.copy),
                           label: const Text('Copier'),
@@ -130,7 +163,7 @@ class _TranslateScreenState extends State<TranslateScreen> {
                     ),
                     const SizedBox(height: 8),
                     Text(
-                      'Note: il s\'agit d\'une translittération simple lettre par lettre. Les caractères non reconnus deviennent "·".',
+                      'Le mode vocal des runes lit une version phonétique approximative pour un rendu plus naturel.',
                       style: Theme.of(context).textTheme.bodySmall,
                     ),
                   ],
