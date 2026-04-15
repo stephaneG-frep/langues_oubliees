@@ -1,0 +1,110 @@
+[
+  {
+    "id": "fehu",
+    "symbol": "ᚠ",
+    "name": "Fehu",
+    "latinEquivalent": "f",
+    "sound": "f",
+    "meaning": "Bétail, richesse",
+    "description": "Rune associée à la prospérité, aux ressources et à l'énergie de départ."
+  },
+  {
+    "id": "uruz",
+    "symbol": "ᚢ",
+    "name": "Uruz",
+    "latinEquivalent": "u",
+    "sound": "ou",
+    "meaning": "Force, vitalité",
+    "description": "Symbole de puissance brute, de santé et de transformation."
+  },
+  {
+    "id": "thurisaz",
+    "symbol": "ᚦ",
+    "name": "Thurisaz",
+    "latinEquivalent": "th",
+    "sound": "th",
+    "meaning": "Protection, seuil",
+    "description": "Rune du géant et de la défense, liée aux passages importants."
+  },
+  {
+    "id": "ansuz",
+    "symbol": "ᚨ",
+    "name": "Ansuz",
+    "latinEquivalent": "a",
+    "sound": "a",
+    "meaning": "Parole, sagesse",
+    "description": "Relie l'expression, la connaissance et la communication sacrée."
+  },
+  {
+    "id": "raidho",
+    "symbol": "ᚱ",
+    "name": "Raidho",
+    "latinEquivalent": "r",
+    "sound": "r",
+    "meaning": "Voyage, rythme",
+    "description": "Évoque le mouvement juste, le chemin et l'ordre du trajet."
+  },
+  {
+    "id": "kaunan",
+    "symbol": "ᚲ",
+    "name": "Kaunan",
+    "latinEquivalent": "k",
+    "sound": "k",
+    "meaning": "Torche, clarté",
+    "description": "Rune du feu maîtrisé, de la création et de la lucidité."
+  },
+  {
+    "id": "gebo",
+    "symbol": "ᚷ",
+    "name": "Gebo",
+    "latinEquivalent": "g",
+    "sound": "g",
+    "meaning": "Don, échange",
+    "description": "Représente la réciprocité, les alliances et l'équilibre des liens."
+  },
+  {
+    "id": "wunjo",
+    "symbol": "ᚹ",
+    "name": "Wunjo",
+    "latinEquivalent": "w",
+    "sound": "w",
+    "meaning": "Joie, harmonie",
+    "description": "Annonce l'accord intérieur, la communauté et l'accomplissement."
+  },
+  {
+    "id": "hagalaz",
+    "symbol": "ᚺ",
+    "name": "Hagalaz",
+    "latinEquivalent": "h",
+    "sound": "h",
+    "meaning": "Grêle, rupture",
+    "description": "Force de changement parfois brusque, mais féconde sur le long terme."
+  },
+  {
+    "id": "isa",
+    "symbol": "ᛁ",
+    "name": "Isa",
+    "latinEquivalent": "i",
+    "sound": "i",
+    "meaning": "Glace, stabilité",
+    "description": "Invite à la concentration, au calme et à la maîtrise de soi."
+  },
+  {
+    "id": "jera",
+    "symbol": "ᛃ",
+    "name": "Jera",
+    "latinEquivalent": "j",
+    "sound": "y",
+    "meaning": "Cycle, récolte",
+    "description": "Symbole du temps juste, de la patience et des fruits du travail."
+  },
+  {
+    "id": "algiz",
+    "symbol": "ᛉ",
+    "name": "Algiz",
+    "latinEquivalent": "z",
+    "sound": "z",
+    "meaning": "Protection élevée",
+    "description": "Rune de sauvegarde, d'intuition et de connexion au sacré."
+  }
+]
