@@ -16,7 +16,7 @@ class TransliterationService {
       map[rune.latinEquivalent.toLowerCase()] = rune.symbol;
     }
 
-    final source = input.toLowerCase();
+    final source = _normalizeInput(input);
     final buffer = StringBuffer();
 
     int index = 0;
@@ -29,14 +29,29 @@ class TransliterationService {
         continue;
       }
 
-      final maybeDigraph = index + 1 < source.length
+      if (_isPunctuation(currentChar)) {
+        buffer.write(currentChar);
+        index++;
+        continue;
+      }
+
+      final twoChars = index + 1 < source.length
           ? source.substring(index, index + 2)
           : null;
 
-      if (maybeDigraph != null && map.containsKey(maybeDigraph)) {
-        buffer.write(map[maybeDigraph]);
-        index += 2;
-        continue;
+      if (twoChars != null) {
+        final rewrittenDigraph = _rewriteDigraph(twoChars);
+        if (rewrittenDigraph != null && map.containsKey(rewrittenDigraph)) {
+          buffer.write(map[rewrittenDigraph]);
+          index += 2;
+          continue;
+        }
+
+        if (map.containsKey(twoChars)) {
+          buffer.write(map[twoChars]);
+          index += 2;
+          continue;
+        }
       }
 
       if (map.containsKey(currentChar)) {
@@ -50,7 +65,66 @@ class TransliterationService {
     return buffer.toString().replaceAll(RegExp(r'\s+'), ' ').trim();
   }
 
+  String _normalizeInput(String value) {
+    var normalized = value.toLowerCase();
+
+    const replacements = {
+      'à': 'a',
+      'á': 'a',
+      'â': 'a',
+      'ä': 'a',
+      'ã': 'a',
+      'å': 'a',
+      'æ': 'ae',
+      'ç': 'c',
+      'è': 'e',
+      'é': 'e',
+      'ê': 'e',
+      'ë': 'e',
+      'ì': 'i',
+      'í': 'i',
+      'î': 'i',
+      'ï': 'i',
+      'ñ': 'n',
+      'ò': 'o',
+      'ó': 'o',
+      'ô': 'o',
+      'ö': 'o',
+      'õ': 'o',
+      'œ': 'oe',
+      'ù': 'u',
+      'ú': 'u',
+      'û': 'u',
+      'ü': 'u',
+      'ý': 'y',
+      'ÿ': 'y',
+    };
+
+    replacements.forEach((from, to) {
+      normalized = normalized.replaceAll(from, to);
+    });
+
+    return normalized;
+  }
+
+  String? _rewriteDigraph(String value) {
+    switch (value) {
+      case 'qu':
+      case 'ch':
+        return 'k';
+      case 'ou':
+        return 'u';
+      default:
+        return null;
+    }
+  }
+
   bool _isWhitespace(String value) {
     return value.trim().isEmpty;
+  }
+
+  bool _isPunctuation(String value) {
+    const punctuation = '.,;:!?()[]{}\'"-_/';
+    return punctuation.contains(value);
   }
 }

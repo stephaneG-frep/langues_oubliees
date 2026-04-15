@@ -1,5 +1,7 @@
 enum QuizQuestionType { latinToRune, runeToName, meaningToRune }
 
+enum QuizDifficulty { easy, normal }
+
 class QuizQuestion {
   const QuizQuestion({
     required this.id,

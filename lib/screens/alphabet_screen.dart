@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
@@ -55,7 +56,7 @@ class AlphabetScreen extends StatelessWidget {
                             return RuneListCard(
                               rune: rune,
                               onTap: () => context.push(AppRoutes.runeDetail(rune.id)),
-                            );
+                            ).animate(delay: (40 * index).ms).fadeIn(duration: 220.ms).slideY(begin: 0.1);
                           },
                         ),
                 ),

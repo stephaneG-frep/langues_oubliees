@@ -53,4 +53,21 @@ class LocalStorageService {
   Future<void> saveThemeMode(bool isDark) async {
     await _prefs.setBool(StorageKeys.themeMode, isDark);
   }
+
+  int loadBestQuizScore({required bool isEasy}) {
+    return _prefs.getInt(
+          isEasy ? StorageKeys.bestQuizScoreEasy : StorageKeys.bestQuizScoreNormal,
+        ) ??
+        0;
+  }
+
+  Future<void> saveBestQuizScore({
+    required bool isEasy,
+    required int score,
+  }) async {
+    await _prefs.setInt(
+      isEasy ? StorageKeys.bestQuizScoreEasy : StorageKeys.bestQuizScoreNormal,
+      score,
+    );
+  }
 }

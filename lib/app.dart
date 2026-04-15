@@ -42,7 +42,7 @@ class _LanguesOublieesAppState extends State<LanguesOublieesApp> {
         ChangeNotifierProvider(
           create: (_) => ThemeProvider(widget.storageService)..loadTheme(),
         ),
-        ChangeNotifierProvider(create: (_) => QuizProvider()),
+        ChangeNotifierProvider(create: (_) => QuizProvider(widget.storageService)),
       ],
       child: Consumer<ThemeProvider>(
         builder: (context, themeProvider, _) {

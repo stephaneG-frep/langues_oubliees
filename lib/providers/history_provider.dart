@@ -41,8 +41,21 @@ class HistoryProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> removeById(String itemId) async {
-    _items.removeWhere((item) => item.id == itemId);
+  Future<TranslationHistoryItem?> removeById(String itemId) async {
+    TranslationHistoryItem? removed;
+    _items.removeWhere((item) {
+      final match = item.id == itemId;
+      if (match) removed = item;
+      return match;
+    });
+    await _storageService.saveHistory(_items);
+    notifyListeners();
+    return removed;
+  }
+
+  Future<void> restoreItem(TranslationHistoryItem item, {int index = 0}) async {
+    final safeIndex = index.clamp(0, _items.length);
+    _items.insert(safeIndex, item);
     await _storageService.saveHistory(_items);
     notifyListeners();
   }

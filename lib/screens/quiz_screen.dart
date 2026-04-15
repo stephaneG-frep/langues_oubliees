@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../models/quiz_question.dart';
 import '../providers/quiz_provider.dart';
 import '../providers/runes_provider.dart';
 import '../widgets/mystic_background.dart';
@@ -26,6 +27,21 @@ class QuizScreen extends StatelessWidget {
                         'Prêt à tester vos connaissances ?',
                         style: Theme.of(context).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.w700),
                         textAlign: TextAlign.center,
+                      ),
+                      const SizedBox(height: 12),
+                      SegmentedButton<QuizDifficulty>(
+                        segments: const [
+                          ButtonSegment(value: QuizDifficulty.easy, label: Text('Facile')),
+                          ButtonSegment(value: QuizDifficulty.normal, label: Text('Normal')),
+                        ],
+                        selected: {quizProvider.difficulty},
+                        onSelectionChanged: (selection) =>
+                            quizProvider.setDifficulty(selection.first),
+                      ),
+                      const SizedBox(height: 10),
+                      Text(
+                        'Meilleur score (${quizProvider.difficulty == QuizDifficulty.easy ? 'facile' : 'normal'}) : ${quizProvider.bestScore}',
+                        style: Theme.of(context).textTheme.titleMedium,
                       ),
                       const SizedBox(height: 12),
                       FilledButton.icon(
@@ -57,6 +73,11 @@ class QuizScreen extends StatelessWidget {
                           Text(
                             'Score: ${quizProvider.score} / ${quizProvider.questions.length}',
                             style: Theme.of(context).textTheme.titleLarge,
+                          ),
+                          const SizedBox(height: 8),
+                          Text(
+                            'Meilleur score: ${quizProvider.bestScore}',
+                            style: Theme.of(context).textTheme.titleMedium,
                           ),
                           const SizedBox(height: 16),
                           FilledButton.icon(
@@ -122,9 +143,23 @@ class QuizScreen extends StatelessWidget {
                     );
                   },
                 ),
+                if (quizProvider.correctionText != null) ...[
+                  const SizedBox(height: 6),
+                  Card(
+                    child: Padding(
+                      padding: const EdgeInsets.all(14),
+                      child: Text(
+                        quizProvider.correctionText!,
+                        style: Theme.of(context).textTheme.bodyLarge,
+                      ),
+                    ),
+                  ),
+                ],
                 const SizedBox(height: 8),
                 FilledButton(
-                  onPressed: quizProvider.showCorrection ? quizProvider.nextQuestion : null,
+                  onPressed: quizProvider.showCorrection
+                      ? () => quizProvider.nextQuestion()
+                      : null,
                   child: const Text('Question suivante'),
                 ),
               ],

@@ -65,8 +65,21 @@ class FavoritesProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> removeById(String itemId) async {
-    _items.removeWhere((item) => item.id == itemId);
+  Future<FavoriteItem?> removeById(String itemId) async {
+    FavoriteItem? removed;
+    _items.removeWhere((item) {
+      final match = item.id == itemId;
+      if (match) removed = item;
+      return match;
+    });
+    await _storageService.saveFavorites(_items);
+    notifyListeners();
+    return removed;
+  }
+
+  Future<void> restoreItem(FavoriteItem item, {int index = 0}) async {
+    final safeIndex = index.clamp(0, _items.length);
+    _items.insert(safeIndex, item);
     await _storageService.saveFavorites(_items);
     notifyListeners();
   }
